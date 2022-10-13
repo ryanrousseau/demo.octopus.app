@@ -83,3 +83,9 @@ variable "RandomQuotes.WorkerPool" {
 
     value "azure-worker-pool" {}
 }
+
+variable "OctopusBypassDeploymentMutex" {
+    value "False" {
+        action = ["create-infrastructure"]
+    }
+}
