@@ -1,0 +1,20 @@
+variable "Octopus.Azure.Account" {
+    type = "AzureAccount"
+
+    value "octopetshop-azure-subscription" {
+        action = ["check-for-namespace"]
+        description = ""
+    }
+}
+
+variable "PetClinic.CleanedEnvironmentName" {
+    value "#{Octopus.Environment.Name | Replace \"[^a-zA-Z]+\" \"-\" | ToLower}" {}
+}
+
+variable "PetClinic.CleanedSpaceName" {
+    value "#{Octopus.Space.Name | Replace \"[^a-zA-Z]+\" \"-\" | ToLower}" {}
+}
+
+variable "PetClinic.Cluster.Namespace" {
+    value "#{PetClinic.CleanedSpaceName}-#{PetClinic.CleanedEnvironmentName}" {}
+}
