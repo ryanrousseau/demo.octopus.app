@@ -13,6 +13,7 @@ step "approve-production-deployment" {
         properties = {
             Octopus.Action.Manual.BlockConcurrentDeployments = "True"
             Octopus.Action.Manual.Instructions = "Please add approval notes here."
+            Octopus.Action.RunOnServer = "false"
         }
         worker_pool_variable = ""
     }
@@ -60,6 +61,7 @@ step "deploy-petclinic-helm-chart" {
     action {
         action_type = "Octopus.HelmChartUpgrade"
         properties = {
+            Octopus.Action.Helm.AdditionalArgs = "--wait"
             Octopus.Action.Helm.ClientVersion = "V3"
             Octopus.Action.Helm.Namespace = "#{PetClinic.Cluster.Namespace}"
             Octopus.Action.Helm.ResetValues = "True"
@@ -130,6 +132,7 @@ step "send-completion-notification" {
             Octopus.Action.Email.IsHtml = "True"
             Octopus.Action.Email.Subject = "Release #{Octopus.Release.Number} has been deployed to #{Octopus.Environment.Name}"
             Octopus.Action.Email.To = "#{Octopus.Deployment.CreatedBy.EmailAddress}"
+            Octopus.Action.RunOnServer = "false"
         }
         worker_pool_variable = ""
     }
