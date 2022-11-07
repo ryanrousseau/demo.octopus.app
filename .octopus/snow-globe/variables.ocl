@@ -35,3 +35,7 @@ variable "SnowGlobe.WorkerPool" {
 
     value "azure-worker-pool" {}
 }
+
+variable "Octopus.ServiceNow.ChangeRequest.Number" {
+    value "#{if Octopus.Deployment.Trigger.Id}CHG0030008#{/if}" {}
+}
