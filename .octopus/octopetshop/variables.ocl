@@ -10,14 +10,6 @@ variable "OctoPetShop.Cluster.Namespace" {
     value "#{OctoPetShop.CleanedSpaceName}-#{OctoPetShop.CleanedEnvironmentName}" {}
 }
 
-variable "OctoPetShop.Container.MemoryLimit" {
-    value "500Mi" {}
-}
-
-variable "OctoPetShop.Container.MemoryRequest" {
-    value "10Mi" {}
-}
-
 variable "OctoPetShop.Database.ConnectionString" {
     value "Data Source=#{OctoPetShop.Database.Server};Initial Catalog=#{OctoPetShop.Database.Name};Persist Security Info=False;User ID=#{OctoPetShop.Database.User};Password=#{OctoPetShop.Database.Password};TrustServerCertificate=true" {}
 }
@@ -145,5 +137,27 @@ variable "OctoPetShop.Database.Server" {
     value "#{OctoPetShop.Database.ServiceName}" {
         description = ""
         environment = ["production"]
+    }
+}
+
+variable "OctoPetShop.Container.MemoryLimit" {
+    value "500Mi" {
+        environment = ["development"]
+    }
+
+    value "1000Mi" {
+        description = ""
+        environment = ["test", "production"]
+    }
+}
+
+variable "OctoPetShop.Container.MemoryRequest" {
+    value "10Mi" {
+        environment = ["development"]
+    }
+
+    value "250Mi" {
+        description = ""
+        environment = ["test", "production"]
     }
 }
