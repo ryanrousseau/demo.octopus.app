@@ -34,10 +34,6 @@ variable "OctoPetShop.Database.Name" {
     value "ops-#{Octopus.Environment.Name | ToLower}" {}
 }
 
-variable "OctoPetShop.Database.Server" {
-    value "#{OctoPetShop.Database.ServiceName}" {}
-}
-
 variable "OctoPetShop.Database.ServiceName" {
     value "octopetshop-database" {}
 }
@@ -133,5 +129,21 @@ variable "Octopus.Azure.Account" {
 
     value "octopetshop-azure-subscription" {
         action = ["create-web-app-service"]
+    }
+}
+
+variable "OctoPetShop.Database.Server" {
+    value "#{OctoPetShop.Database.ServiceName}-dev" {
+        environment = ["development"]
+    }
+
+    value "#{OctoPetShop.Database.ServiceName}-test" {
+        description = ""
+        environment = ["test"]
+    }
+
+    value "#{OctoPetShop.Database.ServiceName}" {
+        description = ""
+        environment = ["production"]
     }
 }
