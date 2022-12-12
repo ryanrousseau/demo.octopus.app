@@ -9,6 +9,7 @@ step "back-up-store-client-filesystem" {
         action_type = "Octopus.Script"
         name = "Back up store client filesystem"
         properties = {
+            Octopus.Action.RunOnServer = "false"
             Octopus.Action.Script.ScriptBody = <<-EOT
                 Write-Highlight "Backing up store client filesystem"
                 
@@ -19,13 +20,13 @@ step "back-up-store-client-filesystem" {
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
         }
-        worker_pool = "hosted-ubuntu"
     }
 
     action "upgrade-store-client-software" {
         action_type = "Octopus.Script"
         name = "Upgrade store client software"
         properties = {
+            Octopus.Action.RunOnServer = "false"
             Octopus.Action.Script.ScriptBody = <<-EOT
                 Write-Highlight "Upgrading store client software"
                 
@@ -36,6 +37,5 @@ step "back-up-store-client-filesystem" {
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
         }
-        worker_pool = "hosted-ubuntu"
     }
 }
