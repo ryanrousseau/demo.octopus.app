@@ -12,7 +12,7 @@ step "back-up-store-client-filesystem" {
             Octopus.Action.Script.ScriptBody = <<-EOT
                 Write-Highlight "Backing up store client filesystem"
                 
-                Start-Sleep 5
+                Start-Sleep 2
                 
                 Write-Highlight "Finished backing up store client filesystem"
             EOT
@@ -29,7 +29,7 @@ step "back-up-store-client-filesystem" {
             Octopus.Action.Script.ScriptBody = <<-EOT
                 Write-Highlight "Upgrading store client software"
                 
-                Start-Sleep 5
+                Start-Sleep 2
                 
                 Write-Highlight "Finished upgrading store client software"
             EOT
