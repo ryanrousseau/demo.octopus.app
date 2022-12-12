@@ -1,7 +1,7 @@
 step "back-up-store-client-filesystem" {
     name = "Upgrade POS client software"
     properties = {
-        Octopus.Action.MaxParallelism = "5"
+        Octopus.Action.MaxParallelism = "10"
         Octopus.Action.TargetRoles = "pos-client"
     }
 
