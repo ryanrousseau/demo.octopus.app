@@ -7,6 +7,7 @@ step "back-up-store-server-database" {
     action {
         action_type = "Octopus.Script"
         properties = {
+            Octopus.Action.RunOnServer = "false"
             Octopus.Action.Script.ScriptBody = <<-EOT
                 Write-Highlight "Backing up store server database"
                 
@@ -17,7 +18,6 @@ step "back-up-store-server-database" {
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
         }
-        worker_pool = "hosted-ubuntu"
     }
 }
 
@@ -30,6 +30,7 @@ step "back-up-store-server-filesystem" {
     action {
         action_type = "Octopus.Script"
         properties = {
+            Octopus.Action.RunOnServer = "false"
             Octopus.Action.Script.ScriptBody = <<-EOT
                 Write-Highlight "Backing up store server filesystem"
                 
@@ -40,7 +41,6 @@ step "back-up-store-server-filesystem" {
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
         }
-        worker_pool = "hosted-ubuntu"
     }
 }
 
@@ -53,6 +53,7 @@ step "upgrade-store-server-database" {
     action {
         action_type = "Octopus.Script"
         properties = {
+            Octopus.Action.RunOnServer = "false"
             Octopus.Action.Script.ScriptBody = <<-EOT
                 Write-Highlight "Upgrading store server database"
                 
@@ -63,7 +64,6 @@ step "upgrade-store-server-database" {
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
         }
-        worker_pool = "hosted-ubuntu"
     }
 }
 
@@ -76,6 +76,7 @@ step "upgrade-store-server-software" {
     action {
         action_type = "Octopus.Script"
         properties = {
+            Octopus.Action.RunOnServer = "false"
             Octopus.Action.Script.ScriptBody = <<-EOT
                 Write-Highlight "Upgrading store server software"
                 
@@ -86,6 +87,5 @@ step "upgrade-store-server-software" {
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
         }
-        worker_pool = "hosted-ubuntu"
     }
 }
