@@ -1,37 +1,87 @@
-step "back-up-store-client-filesystem" {
-    name = "Upgrade POS client software"
+step "back-up-store-server-database" {
+    name = "Back up store server database"
     properties = {
-        Octopus.Action.MaxParallelism = "10"
-        Octopus.Action.TargetRoles = "pos-client"
+        Octopus.Action.TargetRoles = "pos-server"
     }
 
-    action "back-up-store-client-filesystem" {
+    action {
         action_type = "Octopus.Script"
-        name = "Back up store client filesystem"
         properties = {
             Octopus.Action.Script.ScriptBody = <<-EOT
-                Write-Highlight "Backing up store client filesystem"
+                Write-Highlight "Backing up store server database"
                 
-                Start-Sleep 2
+                Start-Sleep 5
                 
-                Write-Highlight "Finished backing up store client filesystem"
+                Write-Highlight "Finished backing up store server database"
             EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
         }
         worker_pool = "hosted-ubuntu"
     }
+}
 
-    action "upgrade-store-client-software" {
+step "back-up-store-server-filesystem" {
+    name = "Back up store server filesystem"
+    properties = {
+        Octopus.Action.TargetRoles = "pos-server"
+    }
+
+    action {
         action_type = "Octopus.Script"
-        name = "Upgrade store client software"
         properties = {
             Octopus.Action.Script.ScriptBody = <<-EOT
-                Write-Highlight "Upgrading store client software"
+                Write-Highlight "Backing up store server filesystem"
                 
-                Start-Sleep 2
+                Start-Sleep 5
                 
-                Write-Highlight "Finished upgrading store client software"
+                Write-Highlight "Finished backing up store server filesystem"
+            EOT
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+        }
+        worker_pool = "hosted-ubuntu"
+    }
+}
+
+step "upgrade-store-server-database" {
+    name = "Upgrade store server database"
+    properties = {
+        Octopus.Action.TargetRoles = "pos-server"
+    }
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.Script.ScriptBody = <<-EOT
+                Write-Highlight "Upgrading store server database"
+                
+                Start-Sleep 5
+                
+                Write-Highlight "Finished upgrading store server database"
+            EOT
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+        }
+        worker_pool = "hosted-ubuntu"
+    }
+}
+
+step "upgrade-store-server-software" {
+    name = "Upgrade store server software"
+    properties = {
+        Octopus.Action.TargetRoles = "pos-server"
+    }
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.Script.ScriptBody = <<-EOT
+                Write-Highlight "Upgrading store server software"
+                
+                Start-Sleep 5
+                
+                Write-Highlight "Finished upgrading store server software"
             EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
