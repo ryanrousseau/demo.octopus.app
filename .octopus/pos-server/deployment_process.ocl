@@ -1,11 +1,13 @@
 step "back-up-store-client-filesystem" {
-    name = "Back up store client filesystem"
+    name = "Upgrade POS client software"
     properties = {
+        Octopus.Action.MaxParallelism = "5"
         Octopus.Action.TargetRoles = "pos-client"
     }
 
-    action {
+    action "back-up-store-client-filesystem" {
         action_type = "Octopus.Script"
+        name = "Back up store client filesystem"
         properties = {
             Octopus.Action.Script.ScriptBody = <<-EOT
                 Write-Highlight "Backing up store client filesystem"
@@ -19,16 +21,10 @@ step "back-up-store-client-filesystem" {
         }
         worker_pool = "hosted-ubuntu"
     }
-}
 
-step "upgrade-store-client-software" {
-    name = "Upgrade store client software"
-    properties = {
-        Octopus.Action.TargetRoles = "pos-client"
-    }
-
-    action {
+    action "upgrade-store-client-software" {
         action_type = "Octopus.Script"
+        name = "Upgrade store client software"
         properties = {
             Octopus.Action.Script.ScriptBody = <<-EOT
                 Write-Highlight "Upgrading store client software"
