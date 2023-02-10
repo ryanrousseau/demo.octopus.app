@@ -13,7 +13,6 @@ step "approve-production-deployment" {
         properties = {
             Octopus.Action.Manual.BlockConcurrentDeployments = "True"
             Octopus.Action.Manual.Instructions = "Please add approval notes here."
-            Octopus.Action.Manual.ResponsibleTeamIds = "qa"
             Octopus.Action.RunOnServer = "false"
         }
     }
