@@ -18,10 +18,6 @@ variable "Goji.WebApp.HttpsPort" {
     value "5001" {}
 }
 
-variable "Goji.WebApp.ServiceName" {
-    value "snowglobe-web-app" {}
-}
-
 variable "Goji.WorkerPool" {
     type = "WorkerPool"
 
@@ -46,4 +42,8 @@ variable "Octopus.JiraServiceManagement.ChangeRequest.Number" {
             label = "JSM Change Request Number"
         }
     }
+}
+
+variable "Goji.WebApp.ServiceName" {
+    value "goji-web-app" {}
 }
