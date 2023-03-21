@@ -37,7 +37,7 @@ variable "SnowGlobe.WorkerPool" {
 }
 
 variable "Octopus.ServiceNow.ChangeRequest.Number" {
-    value "CHG0030008" {
+    value "CHG0030002" {
         environment = ["production"]
 
         prompt {
