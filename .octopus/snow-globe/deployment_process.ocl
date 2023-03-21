@@ -29,7 +29,7 @@ step "create-web-app-service" {
                     component: sg-web
                     type: main
                 
-            EOT
+                EOT
             Octopus.Action.KubernetesContainers.Namespace = "#{SnowGlobe.Cluster.Namespace}"
             Octopus.Action.Script.ScriptSource = "Inline"
             OctopusUseBundledTooling = "False"
