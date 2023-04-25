@@ -107,7 +107,7 @@ step "deploy-trading-site" {
                 $nic = $OctopusParameters["OctoFX.VM.Nic"]
                 
                 az network nic ip-config address-pool remove -g $resourceGroup --lb-name $loadBalancer --address-pool $addressPool --ip-config-name $ipConfig --nic-name $nic
-            EOT
+                EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
             OctopusUseBundledTooling = "False"
@@ -169,7 +169,7 @@ step "deploy-trading-site" {
                 Invoke-WebRequest -URI "${URI}" -UseBasicParsing
                 
                 Write-Highlight "[$URI](${URI})"
-            EOT
+                EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
         }
@@ -191,7 +191,7 @@ step "deploy-trading-site" {
                 $nic = $OctopusParameters["OctoFX.VM.Nic"]
                 
                 az network nic ip-config address-pool add -g $resourceGroup --lb-name $loadBalancer --address-pool $addressPool --ip-config-name $ipConfig --nic-name $nic
-            EOT
+                EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
             OctopusUseBundledTooling = "False"
