@@ -42,24 +42,6 @@ variable "OctoFX.TradingSite.Name" {
     value "OctoFX" {}
 }
 
-variable "OctoFX.TradingSite.Url" {
-    value "http://octofx-web-1.westus2.cloudapp.azure.com/" {
-        environment = ["development"]
-    }
-
-    value "http://octofx-web-2.westus2.cloudapp.azure.com" {
-        environment = ["test"]
-    }
-
-    value "http://octofx-web-3.westus2.cloudapp.azure.com" {
-        role = ["octofx-web-3"]
-    }
-
-    value "http://octofx-web-4.westus2.cloudapp.azure.com" {
-        role = ["octofx-web-4"]
-    }
-}
-
 variable "OctoFX.VM.Admin.Username" {
     value "octoadmin" {}
 }
@@ -90,4 +72,10 @@ variable "OctopusPrintEvaluatedVariables" {
 
 variable "OctopusPrintVariables" {
     value "False" {}
+}
+
+variable "OctoFX.TradingSite.Url" {
+    value "http://$($OctopusParameters['Octopus.Machine.Name']).westus2.cloudapp.azure.com" {
+        description = ""
+    }
 }
