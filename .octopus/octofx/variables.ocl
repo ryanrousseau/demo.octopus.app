@@ -75,7 +75,7 @@ variable "OctopusPrintVariables" {
 }
 
 variable "OctoFX.TradingSite.Url" {
-    value "http://$($OctopusParameters['Octopus.Machine.Name']).westus2.cloudapp.azure.com" {
+    value "http://#{Octopus.Machine.Name}.westus2.cloudapp.azure.com" {
         description = ""
     }
 }
