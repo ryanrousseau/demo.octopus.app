@@ -71,7 +71,7 @@ step "deploy-web-app-containers" {
 
     action {
         action_type = "Octopus.KubernetesDeployContainers"
-        notes = "Deploy the web app containers to the target cluster."
+        notes = "Deploy the web app containers to the target cluster. demo"
         properties = {
             Octopus.Action.EnabledFeatures = ",Octopus.Features.KubernetesService,Octopus.Features.KubernetesIngress,Octopus.Features.KubernetesConfigMap,Octopus.Features.KubernetesSecret"
             Octopus.Action.KubernetesContainers.CombinedVolumes = "[]"
