@@ -49,7 +49,7 @@ step "create-web-app-service" {
                     component: web
                     type: main
                 
-            EOT
+                EOT
             Octopus.Action.KubernetesContainers.Namespace = "#{OctoPetShop.Cluster.Namespace}"
             Octopus.Action.Script.ScriptSource = "Inline"
             OctopusUseBundledTooling = "False"
