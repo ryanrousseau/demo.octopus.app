@@ -8,6 +8,7 @@ step "approve-production-release" {
     action {
         action_type = "Octopus.Manual"
         environments = ["production"]
+        is_disabled = true
         is_required = true
         notes = "Require approval from someone with the appropriate permissions."
         properties = {
