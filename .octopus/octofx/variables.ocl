@@ -79,3 +79,7 @@ variable "OctoFX.TradingSite.Url" {
         description = ""
     }
 }
+
+variable "Octopus.ServiceNow.ChangeRequest.Number" {
+    value "CHG0030002" {}
+}
