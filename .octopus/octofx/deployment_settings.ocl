@@ -8,7 +8,9 @@ release_notes_template = <<-EOT
         #{/each}
         EOT
 
-connectivity_policy {}
+connectivity_policy {
+    skip_machine_behavior = "SkipUnavailableMachines"
+}
 
 versioning_strategy {
     template = "#{Octopus.Version.LastMajor}.#{Octopus.Version.LastMinor}.#{Octopus.Version.NextPatch}"
