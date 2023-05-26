@@ -236,7 +236,7 @@ step "send-completion-notification" {
         environments = ["production"]
         notes = "Email the deployer that the deployment has been completed."
         properties = {
-            Octopus.Action.Email.Body = "#{Octopus.Release.Notes}"
+            Octopus.Action.Email.Body = "#{Octopus.Release.Notes | Markdown}"
             Octopus.Action.Email.IsHtml = "True"
             Octopus.Action.Email.Subject = "Release #{Octopus.Release.Number} has been deployed to #{Octopus.Environment.Name}"
             Octopus.Action.Email.To = "#{Octopus.Deployment.CreatedBy.EmailAddress}"
