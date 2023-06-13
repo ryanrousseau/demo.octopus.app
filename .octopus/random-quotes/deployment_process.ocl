@@ -13,8 +13,8 @@ step "approve-deployment" {
         properties = {
             Octopus.Action.Manual.BlockConcurrentDeployments = "True"
             Octopus.Action.Manual.Instructions = "Please enter notes below and either approve or cancel the deployment."
+            Octopus.Action.RunOnServer = "false"
         }
-        worker_pool_variable = ""
     }
 }
 
@@ -274,13 +274,14 @@ step "send-completion-notification" {
     action {
         action_type = "Octopus.Email"
         environments = ["production"]
+        is_disabled = true
         is_required = true
         notes = "Email the deployer that the deployment has been completed."
         properties = {
             Octopus.Action.Email.Body = "#{Octopus.Release.Notes}"
             Octopus.Action.Email.Subject = "Release #{Octopus.Release.Number} has been deployed to #{Octopus.Environment.Name} for #{Octopus.Deployment.Tenant.Name}"
             Octopus.Action.Email.To = "#{Octopus.Deployment.CreatedBy.EmailAddress}"
+            Octopus.Action.RunOnServer = "false"
         }
-        worker_pool_variable = ""
     }
 }
