@@ -98,6 +98,7 @@ step "deploy-web-app-containers" {
             Octopus.Action.KubernetesContainers.PodManagementPolicy = "OrderedReady"
             Octopus.Action.KubernetesContainers.PodSecuritySysctls = "[]"
             Octopus.Action.KubernetesContainers.Replicas = "1"
+            Octopus.Action.KubernetesContainers.RevisionHistoryLimit = "2"
             Octopus.Action.KubernetesContainers.SecretName = "octopetshop-shoppingcart-secrets"
             Octopus.Action.KubernetesContainers.SecretValues = "{\"ops-connectionstring\":\"#{OctoPetShop.Database.ConnectionString}\"}"
             Octopus.Action.KubernetesContainers.ServiceNameType = "External"
