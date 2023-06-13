@@ -15,7 +15,6 @@ step "approve-production-deployment" {
             Octopus.Action.Manual.Instructions = "Please add approval notes here."
             Octopus.Action.RunOnServer = "false"
         }
-        worker_pool_variable = ""
     }
 }
 
@@ -125,6 +124,7 @@ step "send-completion-notification" {
     action {
         action_type = "Octopus.Email"
         environments = ["production"]
+        is_disabled = true
         notes = "Email the deployer that the deployment has been completed."
         properties = {
             Octopus.Action.Email.Body = "#{Octopus.Release.Notes}"
@@ -133,6 +133,5 @@ step "send-completion-notification" {
             Octopus.Action.Email.To = "#{Octopus.Deployment.CreatedBy.EmailAddress}"
             Octopus.Action.RunOnServer = "false"
         }
-        worker_pool_variable = ""
     }
 }
