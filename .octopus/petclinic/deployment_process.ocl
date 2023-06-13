@@ -44,7 +44,7 @@ step "check-for-namespace" {
                 {
                 	Write-Host "Namespace #{PetClinic.Cluster.Namespace} already exists, moving on ..."
                 }
-            EOT
+                EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
         }
@@ -80,7 +80,7 @@ step "deploy-petclinic-helm-chart" {
                 webimage:
                   tag: "#{Octopus.Action.Package[petclinic-web].PackageVersion}"
                       
-            EOT
+                EOT
             Octopus.Action.Package.DownloadOnTentacle = "False"
             Octopus.Action.Package.FeedId = "octopus-server-built-in"
             Octopus.Action.Package.PackageId = "petclinic-chart"
