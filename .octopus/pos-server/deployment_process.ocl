@@ -72,6 +72,17 @@ step "upgrade-store-server-database" {
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
         }
+
+        packages "Pos.Server.Migrations" {
+            acquisition_location = "Server"
+            feed = "octopus-server-built-in"
+            package_id = "Pos.Server.Migrations"
+            properties = {
+                Extract = "False"
+                Purpose = ""
+                SelectionMode = "immediate"
+            }
+        }
     }
 }
 
@@ -99,6 +110,17 @@ step "upgrade-store-server-software" {
                 EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
+        }
+
+        packages "Pos.Server.Application" {
+            acquisition_location = "Server"
+            feed = "octopus-server-built-in"
+            package_id = "Pos.Server.Application"
+            properties = {
+                Extract = "False"
+                Purpose = ""
+                SelectionMode = "immediate"
+            }
         }
     }
 }
