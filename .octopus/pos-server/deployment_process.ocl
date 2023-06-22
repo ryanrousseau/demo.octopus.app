@@ -9,7 +9,10 @@ step "back-up-store-server-database" {
         properties = {
             Octopus.Action.RunOnServer = "false"
             Octopus.Action.Script.ScriptBody = <<-EOT
+                $connection = $OctopusParameters["Pos.Server.Database.ConnectionString"]
+                
                 Write-Highlight "Backing up store server database"
+                Write-Highlight "Using connection string: $connection"
                 
                 Start-Sleep 5
                 
@@ -55,7 +58,12 @@ step "upgrade-store-server-database" {
         properties = {
             Octopus.Action.RunOnServer = "false"
             Octopus.Action.Script.ScriptBody = <<-EOT
+                $connection = $OctopusParameters["Pos.Server.Database.ConnectionString"]
+                $new = $OctopusParameters["Octopus.Release.Number"]
+                
                 Write-Highlight "Upgrading store server database"
+                Write-Highlight "Using connection string: $connection"
+                Write-Highlight "Applying migrations for $new"
                 
                 Start-Sleep 5
                 
@@ -78,7 +86,12 @@ step "upgrade-store-server-software" {
         properties = {
             Octopus.Action.RunOnServer = "false"
             Octopus.Action.Script.ScriptBody = <<-EOT
+                $current = $OctopusParameters["Octopus.Deployment.PreviousSuccessful.Id"]
+                $new = $OctopusParameters["Octopus.Release.Number"]
+                
                 Write-Highlight "Upgrading store server software"
+                Write-Highlight "Current version is $current"
+                Write-Highlight "New version is $new"
                 
                 Start-Sleep 5
                 
