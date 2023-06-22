@@ -48,7 +48,7 @@ step "back-up-store-client-filesystem" {
             feed = "octopus-server-built-in"
             package_id = "Pos.Client.Application"
             properties = {
-                Extract = "True"
+                Extract = "False"
                 Purpose = ""
                 SelectionMode = "immediate"
             }
