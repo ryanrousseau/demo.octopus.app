@@ -63,7 +63,7 @@ step "upgrade-store-server-database" {
                 
                 Write-Highlight "Upgrading store server database"
                 Write-Highlight "Using connection string: $connection"
-                Write-Highlight "Applying migrations for $new"
+                Write-Highlight "Applying migrations for version $new"
                 
                 Start-Sleep 5
                 
@@ -86,7 +86,7 @@ step "upgrade-store-server-software" {
         properties = {
             Octopus.Action.RunOnServer = "false"
             Octopus.Action.Script.ScriptBody = <<-EOT
-                $current = $OctopusParameters["Octopus.Deployment.PreviousSuccessful.Id"]
+                $current = $OctopusParameters["Octopus.Release.Previous.Number"]
                 $new = $OctopusParameters["Octopus.Release.Number"]
                 
                 Write-Highlight "Upgrading store server software"
