@@ -16,7 +16,7 @@ step "back-up-store-client-filesystem" {
                 Start-Sleep 2
                 
                 Write-Highlight "Finished backing up store client filesystem"
-            EOT
+                EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
         }
@@ -33,7 +33,7 @@ step "back-up-store-client-filesystem" {
                 Start-Sleep 2
                 
                 Write-Highlight "Finished upgrading store client software"
-            EOT
+                EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
         }
