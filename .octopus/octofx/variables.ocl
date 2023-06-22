@@ -82,6 +82,8 @@ variable "OctoFX.TradingSite.Url" {
 
 variable "Octopus.ServiceNow.ChangeRequest.Number" {
     value "CHG0030004" {
+        environment = ["production"]
+
         prompt {
             description = ""
             display_settings = {
