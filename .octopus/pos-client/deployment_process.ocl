@@ -28,7 +28,12 @@ step "back-up-store-client-filesystem" {
         properties = {
             Octopus.Action.RunOnServer = "false"
             Octopus.Action.Script.ScriptBody = <<-EOT
+                $current = $OctopusParameters["Octopus.Release.Previous.Number"]
+                $new = $OctopusParameters["Octopus.Release.Number"]
+                
                 Write-Highlight "Upgrading store client software"
+                Write-Highlight "Current version is $current"
+                Write-Highlight "New version is $new"
                 
                 Start-Sleep 2
                 
