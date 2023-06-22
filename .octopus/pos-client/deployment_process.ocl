@@ -42,5 +42,16 @@ step "back-up-store-client-filesystem" {
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
         }
+
+        packages "Pos.Client.Application" {
+            acquisition_location = "Server"
+            feed = "octopus-server-built-in"
+            package_id = "Pos.Client.Application"
+            properties = {
+                Extract = "True"
+                Purpose = ""
+                SelectionMode = "immediate"
+            }
+        }
     }
 }
