@@ -124,3 +124,22 @@ step "upgrade-store-server-software" {
         }
     }
 }
+
+step "deploy-new-feature" {
+    name = "Deploy new feature"
+    properties = {
+        Octopus.Action.TargetRoles = "pos-server"
+    }
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.Script.ScriptBody = "Write-highlight \"new feature\""
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+        }
+        tenant_tags = ["Release Ring/Alpha"]
+        worker_pool_variable = ""
+    }
+}
