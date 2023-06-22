@@ -1,0 +1,29 @@
+variable "Pos.Server.Database.Password" {
+    value "#{Pos.Server.Tenant.Database.Password}" {}
+}
+
+variable "Pos.Server.Database.User" {
+    value "#{Pos.Server.Tenant.Database.User}" {}
+}
+
+variable "Pos.Server.Database.ConnectionString" {
+    value "Server=#{Pos.Server.Database.Server};Initial Catalog=#{Pos.Server.Database.Name};Persist Security Info=False;User ID=#{Pos.Server.Database.User};Password=#{Pos.Server.Database.Password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" {}
+}
+
+variable "Pos.Server.Database.Name" {
+    value "pos-dev" {
+        environment = ["development"]
+    }
+
+    value "pos-test" {
+        environment = ["test"]
+    }
+
+    value "pos-prod" {
+        environment = ["production"]
+    }
+}
+
+variable "Pos.Server.Database.Server" {
+    value "tcp:database.local,1433" {}
+}
