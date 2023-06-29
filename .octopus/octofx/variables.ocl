@@ -66,14 +66,6 @@ variable "OctoFXDatabase" {
     value "Server=#{OctoFX.Database.Server};Initial Catalog=#{OctoFX.Database.Name};Persist Security Info=False;User ID=#{OctoFX.Database.User};Password=#{OctoFX.Database.UserPassword};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" {}
 }
 
-variable "OctopusPrintEvaluatedVariables" {
-    value "False" {}
-}
-
-variable "OctopusPrintVariables" {
-    value "False" {}
-}
-
 variable "OctoFX.TradingSite.Url" {
     value "http://#{Octopus.Machine.Name}.westus2.cloudapp.azure.com" {
         description = ""
@@ -90,6 +82,30 @@ variable "Octopus.ServiceNow.ChangeRequest.Number" {
                 Octopus.ControlType = "SingleLineText"
             }
             label = "SNOW Change Request"
+        }
+    }
+}
+
+variable "OctopusPrintEvaluatedVariables" {
+    value "False" {
+        prompt {
+            description = ""
+            display_settings = {
+                Octopus.ControlType = "Checkbox"
+            }
+            label = "Print Evaluated Variables"
+        }
+    }
+}
+
+variable "OctopusPrintVariables" {
+    value "False" {
+        prompt {
+            description = ""
+            display_settings = {
+                Octopus.ControlType = "Checkbox"
+            }
+            label = "Print Variables"
         }
     }
 }
