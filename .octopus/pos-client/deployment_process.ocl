@@ -1,7 +1,7 @@
 step "back-up-store-client-filesystem" {
     name = "Upgrade POS client software"
     properties = {
-        Octopus.Action.MaxParallelism = "10"
+        Octopus.Action.MaxParallelism = "100"
         Octopus.Action.TargetRoles = "pos-client"
     }
 
@@ -16,6 +16,8 @@ step "back-up-store-client-filesystem" {
                 Start-Sleep 2
                 
                 Write-Highlight "Finished backing up store client filesystem"
+                
+                fail-step "oops"
                 EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
