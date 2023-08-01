@@ -27,3 +27,17 @@ variable "Pos.Server.Database.Name" {
 variable "Pos.Server.Database.Server" {
     value "tcp:database.local,1433" {}
 }
+
+variable "Octopus.Task.ConcurrencyTag" {
+    value "#{Octopus.Project.Id}/#{Octopus.Environment.Id}/TenantGroup1" {
+        tenant_tag = ["Event Platform Hosting/Hosting Group 1"]
+    }
+
+    value "#{Octopus.Project.Id}/#{Octopus.Environment.Id}/TenantGroup2" {
+        tenant_tag = ["Event Platform Hosting/Hosting Group 2"]
+    }
+
+    value "#{Octopus.Project.Id}/#{Octopus.Environment.Id}/TenantGroup3" {
+        tenant_tag = ["Event Platform Hosting/Hosting Group 3"]
+    }
+}
