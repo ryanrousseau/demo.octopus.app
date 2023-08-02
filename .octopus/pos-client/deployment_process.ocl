@@ -17,7 +17,6 @@ step "back-up-store-client-filesystem" {
                 
                 Write-Highlight "Finished backing up store client filesystem"
                 
-                fail-step "oops"
                 EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
