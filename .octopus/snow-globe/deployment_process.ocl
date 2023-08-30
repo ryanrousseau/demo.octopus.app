@@ -38,7 +38,7 @@ step "create-web-app-service" {
 
         container {
             feed = "docker-hub"
-            image = "octopusdeploy/worker-tools"
+            image = "octopusdeploy/worker-tools:5.1.0-windows.ltsc2019"
         }
     }
 }
