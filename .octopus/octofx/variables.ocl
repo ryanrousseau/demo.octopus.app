@@ -109,3 +109,9 @@ variable "OctopusPrintVariables" {
         }
     }
 }
+
+variable "Project.TradingSite.Certificate" {
+    type = "Certificate"
+
+    value "Certificates-102" {}
+}
