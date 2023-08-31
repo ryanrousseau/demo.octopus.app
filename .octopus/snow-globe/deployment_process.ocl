@@ -34,11 +34,11 @@ step "create-web-app-service" {
             Octopus.Action.Script.ScriptSource = "Inline"
             OctopusUseBundledTooling = "False"
         }
-        worker_pool = "hosted-windows"
+        worker_pool = "hosted-ubuntu"
 
         container {
             feed = "docker-hub"
-            image = "octopusdeploy/worker-tools:5.1.0-windows.ltsc2019"
+            image = "octopusdeploy/worker-tools:5.2.0-ubuntu.22.04"
         }
     }
 }
