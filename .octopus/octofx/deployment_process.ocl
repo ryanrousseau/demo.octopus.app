@@ -135,7 +135,7 @@ step "deploy-trading-site" {
         name = "Deploy Trading Site"
         notes = "Deploy the Trading Site to IIS on a VM in Azure."
         properties = {
-            Octopus.Action.EnabledFeatures = "Octopus.Features.IISWebSite,Octopus.Features.ConfigurationVariables,Octopus.Features.ConfigurationTransforms"
+            Octopus.Action.EnabledFeatures = "Octopus.Features.IISWebSite,Octopus.Features.CustomDirectory,Octopus.Features.ConfigurationVariables,Octopus.Features.ConfigurationTransforms"
             Octopus.Action.IISWebSite.ApplicationPoolFrameworkVersion = "v4.0"
             Octopus.Action.IISWebSite.ApplicationPoolIdentityType = "ApplicationPoolIdentity"
             Octopus.Action.IISWebSite.ApplicationPoolName = "#{OctoFX.TradingSite.AppPoolName}"
@@ -153,6 +153,7 @@ step "deploy-trading-site" {
             Octopus.Action.IISWebSite.WebSiteName = "#{OctoFX.TradingSite.Name}"
             Octopus.Action.Package.AutomaticallyRunConfigurationTransformationFiles = "True"
             Octopus.Action.Package.AutomaticallyUpdateAppSettingsAndConnectionStrings = "True"
+            Octopus.Action.Package.CustomInstallationDirectory = "C:\\temp\\octofx"
             Octopus.Action.Package.DownloadOnTentacle = "False"
             Octopus.Action.Package.FeedId = "azure-devops-artifacts"
             Octopus.Action.Package.PackageId = "OctoFX.TradingWebsite"
