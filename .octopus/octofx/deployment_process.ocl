@@ -139,7 +139,7 @@ step "deploy-trading-site" {
             Octopus.Action.IISWebSite.ApplicationPoolFrameworkVersion = "v4.0"
             Octopus.Action.IISWebSite.ApplicationPoolIdentityType = "ApplicationPoolIdentity"
             Octopus.Action.IISWebSite.ApplicationPoolName = "#{OctoFX.TradingSite.AppPoolName}"
-            Octopus.Action.IISWebSite.Bindings = "[{\"protocol\":\"http\",\"port\":\"80\",\"host\":\"\",\"thumbprint\":null,\"certificateVariable\":null,\"requireSni\":\"False\",\"enabled\":\"True\"},{\"protocol\":\"https\",\"ipAddress\":\"*\",\"port\":\"443\",\"host\":\"\",\"thumbprint\":\"5BEFC9BDD7617E0946EF667A7394E0564C30AD9A\",\"certificateVariable\":null,\"requireSni\":\"False\",\"enabled\":\"True\"}]"
+            Octopus.Action.IISWebSite.Bindings = "[{\"protocol\":\"http\",\"port\":\"80\",\"host\":\"\",\"thumbprint\":null,\"certificateVariable\":null,\"requireSni\":\"False\",\"enabled\":\"True\"}]"
             Octopus.Action.IISWebSite.CreateOrUpdateWebSite = "True"
             Octopus.Action.IISWebSite.DeploymentType = "webSite"
             Octopus.Action.IISWebSite.EnableAnonymousAuthentication = "True"
