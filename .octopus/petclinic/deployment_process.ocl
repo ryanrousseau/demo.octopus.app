@@ -117,6 +117,16 @@ step "deploy-petclinic-helm-chart" {
                 SelectionMode = "immediate"
             }
         }
+
+        packages "ValuesPack-2" {
+            acquisition_location = "ExecutionTarget"
+            feed = "octopus-server-built-in"
+            package_id = "OctoPetShop.Web"
+            properties = {
+                Extract = "true"
+                ValuesFilePath = "**\\values.yaml"
+            }
+        }
     }
 }
 
