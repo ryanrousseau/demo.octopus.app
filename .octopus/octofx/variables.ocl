@@ -113,5 +113,5 @@ variable "Octopus.ServiceNow.ChangeRequest.Number" {
 }
 
 variable "OctoFX.Database.Admin.User" {
-    value "octoadmin2" {}
+    value "octoadmin" {}
 }
