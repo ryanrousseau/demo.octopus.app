@@ -25,6 +25,7 @@ step "deploy-database-changes" {
 
     action {
         action_type = "Octopus.Script"
+        channels = ["hotfix", "stable", "database"]
         notes = "Deploy database changes using a [Worker](https://octopus.com/docs/infrastructure/workers) and [DbUp](https://dbup.readthedocs.io/en/latest/)."
         properties = {
             Octopus.Action.EnabledFeatures = "Octopus.Features.ConfigurationVariables"
@@ -132,6 +133,7 @@ step "deploy-trading-site" {
 
     action "deploy-trading-site" {
         action_type = "Octopus.IIS"
+        channels = ["hotfix", "stable", "website"]
         name = "Deploy Trading Site"
         notes = "Deploy the Trading Site to IIS on a VM in Azure."
         properties = {
