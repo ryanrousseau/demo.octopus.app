@@ -14,7 +14,7 @@ step "approve-production-release" {
         properties = {
             Octopus.Action.Manual.BlockConcurrentDeployments = "True"
             Octopus.Action.Manual.Instructions = "Please provide approval notes."
-            Octopus.Action.Manual.ResponsibleTeamIds = "demo-presenters"
+            Octopus.Action.Manual.ResponsibleTeamIds = "dev-team"
             Octopus.Action.RunOnServer = "false"
         }
     }
