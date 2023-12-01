@@ -58,7 +58,12 @@ step "deploy-rate-service" {
         action_type = "Octopus.WindowsService"
         notes = "Deploy a Windows Service to a VM in Azure."
         properties = {
-            Octopus.Action.EnabledFeatures = ",Octopus.Features.WindowsService,Octopus.Features.ConfigurationTransforms,Octopus.Features.ConfigurationVariables"
+            Octopus.Action.CustomScripts.PostDeploy.ps1 = <<-EOT
+                $d = $OctopusParameters["Octopus.Action.Package.InstallationDirectoryPath"]
+                
+                Write-Highlight "InstallationDirectoryPath $d"
+                EOT
+            Octopus.Action.EnabledFeatures = "Octopus.Features.WindowsService,Octopus.Features.CustomScripts,Octopus.Features.ConfigurationVariables,Octopus.Features.ConfigurationTransforms"
             Octopus.Action.Package.AutomaticallyRunConfigurationTransformationFiles = "True"
             Octopus.Action.Package.AutomaticallyUpdateAppSettingsAndConnectionStrings = "True"
             Octopus.Action.Package.DownloadOnTentacle = "False"
