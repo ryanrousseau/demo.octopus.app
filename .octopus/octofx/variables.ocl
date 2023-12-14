@@ -98,8 +98,12 @@ variable "Project.TradingSite.Certificate" {
     value "Certificates-102" {}
 }
 
+variable "OctoFX.Database.Admin.User" {
+    value "octoadmin" {}
+}
+
 variable "Octopus.ServiceNow.ChangeRequest.Number" {
-    value "CHG0030002" {
+    value "CHG0030001" {
         environment = ["production"]
 
         prompt {
@@ -110,8 +114,4 @@ variable "Octopus.ServiceNow.ChangeRequest.Number" {
             label = "SNOW Change Request"
         }
     }
-}
-
-variable "OctoFX.Database.Admin.User" {
-    value "octoadmin" {}
 }
