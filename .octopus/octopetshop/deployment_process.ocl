@@ -18,6 +18,25 @@ step "approve-production-deployment" {
     }
 }
 
+step "run-database-migrations" {
+    name = "Run database migrations"
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.Script.ScriptBody = <<-EOT
+                Write-Highlight "Updating database..."
+                Start-Sleep -s 5
+                Write-Highlight "Database update complete."
+                
+                EOT
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+        }
+        worker_pool = "azure-worker-pool"
+    }
+}
+
 step "create-web-app-service" {
     name = "Create Web App service"
     properties = {
@@ -137,7 +156,6 @@ step "send-completion-notification" {
     action {
         action_type = "Octopus.Email"
         environments = ["production"]
-        is_disabled = true
         notes = "Email the deployer that the deployment has been completed."
         properties = {
             Octopus.Action.Email.Body = "#{Octopus.Release.Notes}"
