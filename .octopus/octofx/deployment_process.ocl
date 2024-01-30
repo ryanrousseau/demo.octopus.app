@@ -1,25 +1,3 @@
-step "approve-production-release" {
-    condition = "Variable"
-    name = "Approve Production Release"
-    properties = {
-        Octopus.Step.ConditionVariableExpression = "#{unless Octopus.Deployment.Trigger.Id}True#{/unless}"
-    }
-
-    action {
-        action_type = "Octopus.Manual"
-        environments = ["production"]
-        is_disabled = true
-        is_required = true
-        notes = "Require approval from someone with the appropriate permissions."
-        properties = {
-            Octopus.Action.Manual.BlockConcurrentDeployments = "True"
-            Octopus.Action.Manual.Instructions = "Please provide approval notes."
-            Octopus.Action.Manual.ResponsibleTeamIds = "global/demo-presenters"
-            Octopus.Action.RunOnServer = "false"
-        }
-    }
-}
-
 step "deploy-database-changes" {
     name = "Deploy Database Changes"
 
