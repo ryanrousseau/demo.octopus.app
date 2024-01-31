@@ -164,6 +164,8 @@ variable "OctoPetShop.Container.MemoryRequest" {
 
 variable "OctoPetShop.Scale.TargetReplicas" {
     value "3" {
+        process = ["runbook/scale-app"]
+
         prompt {
             description = ""
             display_settings = {
