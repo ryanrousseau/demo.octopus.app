@@ -51,54 +51,54 @@ step "create-infrastructure" {
                 }
                 
                 variable "resourcegroupname" {
-                  type = "string"
+                  type = string
                   default = "#{RandomQuotes.Azure.ResourceGroup.Name}"
                 }
                 
                 variable "webappname" {
-                  type = "string"
+                  type = string
                   default = "#{RandomQuotes.Azure.WebApp.Name}"
                 }
                 
                 variable "databaseserver" {
-                  type = "string"
+                  type = string
                   default = "#{RandomQuotes.Azure.Database.ServerName}"
                 }
                 
                 variable "databasename" {
-                  type = "string"
+                  type = string
                   default = "#{RandomQuotes.Azure.Database.Name}"
                 }
                 
                 variable "environment" {
-                  type = "string"
+                  type = string
                   default = "#{RandomQuotes.Environment}"
                 }
                 
                 variable "location" {
-                  type = "string"
+                  type = string
                   default = "#{RandomQuotes.Tenant.Azure.Location}"
                 }
                 
                 variable "region" {
-                  type = "string"
+                  type = string
                   default = "#{RandomQuotes.Tenant.Azure.Region}"
                 }
                 
                 variable "owner" {
-                  type = "string"
+                  type = string
                   default = "#{Tenant.Key}"
                 }
                 
                 variable "description" {
-                  type = "string"
+                  type = string
                   default = "#{RandomQuotes.Azure.WebApp.Description}"
                 }
                 
                 resource "azurerm_app_service_plan" "main" {
-                  name = "${var.webappname}-service-plan"
-                  location = "${var.location}"
-                  resource_group_name = "${var.resourcegroupname}"
+                  name = ${var.webappname}-service-plan
+                  location = ${var.location}
+                  resource_group_name = ${var.resourcegroupname}
                   kind = "Linux"
                   reserved = true
                 
@@ -108,26 +108,26 @@ step "create-infrastructure" {
                   }
                 
                   tags = {
-                    description = "${var.description}"
-                    environment = "${var.environment}"
-                    owner       = "${var.owner}"
+                    description = ${var.description}
+                    environment = ${var.environment}
+                    owner       = ${var.owner}
                   }
                 }
                 
                 resource "azurerm_app_service" "main" {
-                  name                = "${var.webappname}"
-                  location = "${var.location}"
-                  resource_group_name = "${var.resourcegroupname}"
-                  app_service_plan_id = "${azurerm_app_service_plan.main.id}"
+                  name                = ${var.webappname}
+                  location = ${var.location}
+                  resource_group_name = ${var.resourcegroupname}
+                  app_service_plan_id = ${azurerm_app_service_plan.main.id}
                 
                   site_config {
                     linux_fx_version = "DOTNETCORE|3.1"
                   }
                 
                   tags = {
-                    description = "${var.description}"
-                    environment = "${var.environment}"
-                    owner       = "${var.owner}"
+                    description = ${var.description}
+                    environment = ${var.environment}
+                    owner       = ${var.owner}
                     octopus-environment = "#{Octopus.Environment.Name}"
                     octopus-role = "random-quotes-web"
                     octopus-tenant = "#{Octopus.Deployment.Tenant.Name}"
@@ -135,16 +135,16 @@ step "create-infrastructure" {
                 }
                 
                 resource "azurerm_sql_database" "main" {
-                  name                = "${var.databasename}"
-                  resource_group_name = "${var.resourcegroupname}"
-                  location            = "${var.location}"
-                  server_name         = "${var.databaseserver}"
+                  name                = ${var.databasename}
+                  resource_group_name = ${var.resourcegroupname}
+                  location            = ${var.location}
+                  server_name         = ${var.databaseserver}
                   edition             = "Basic"
                 
                   tags = {
-                    description = "${var.description}"
-                    environment = "${var.environment}"
-                    owner       = "${var.owner}"
+                    description = ${var.description}
+                    environment = ${var.environment}
+                    owner       = ${var.owner}
                   }
                 }
                 EOT
