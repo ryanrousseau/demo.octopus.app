@@ -148,7 +148,7 @@ step "create-infrastructure" {
                   }
                 }
                 EOT
-            Octopus.Action.Terraform.TemplateParameters = "{\"resourcegroupname\":\"#{RandomQuotes.Azure.ResourceGroup.Name}\",\"webappname\":\"#{RandomQuotes.Azure.WebApp.Name}\",\"databaseserver\":\"#{RandomQuotes.Azure.Database.ServerName}\",\"databasename\":\"#{RandomQuotes.Azure.Database.Name}\",\"environment\":\"#{RandomQuotes.Environment}\",\"location\":\"#{RandomQuotes.Tenant.Azure.Location}\",\"region\":\"#{RandomQuotes.Tenant.Azure.Region}\",\"owner\":\"#{Tenant.Key}\",\"description\":\"#{RandomQuotes.Azure.WebApp.Description}\"}"
+            Octopus.Action.Terraform.TemplateParameters = "{\"resourcegroupname\":\"#{RandomQuotes.Azure.ResourceGroup.Name}\",\"webappname\":\"wrg-#{RandomQuotes.Azure.WebApp.Name}\",\"databaseserver\":\"#{RandomQuotes.Azure.Database.ServerName}\",\"databasename\":\"wrg-#{RandomQuotes.Azure.Database.Name}\",\"environment\":\"#{RandomQuotes.Environment}\",\"location\":\"#{RandomQuotes.Tenant.Azure.Location}\",\"region\":\"#{RandomQuotes.Tenant.Azure.Region}\",\"owner\":\"#{Tenant.Key}\",\"description\":\"#{RandomQuotes.Azure.WebApp.Description}\"}"
         }
         worker_pool_variable = "RandomQuotes.WorkerPool"
     }
