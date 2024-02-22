@@ -30,21 +30,13 @@ step "create-infrastructure" {
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Terraform.AllowPluginDownloads = "True"
             Octopus.Action.Terraform.AzureAccount = "True"
-            Octopus.Action.Terraform.EnvVariables = "{\"TF_TOKEN_app_terraform_io\":\"#{TerraformCloud.Token}\"}"
+            Octopus.Action.Terraform.EnvVariables = "{\"TF_TOKEN_app_terraform_io\":\"#{TerraformCloud.Token}\",\"TF_CLOUD_ORGANIZATION\":\"demo-octopus-app\",\"TF_WORKSPACE\":\"wrg-random-quotes\"}"
             Octopus.Action.Terraform.GoogleCloudAccount = "False"
             Octopus.Action.Terraform.ManagedAccount = "None"
             Octopus.Action.Terraform.PlanJsonOutput = "False"
             Octopus.Action.Terraform.RunAutomaticFileSubstitution = "True"
             Octopus.Action.Terraform.Template = <<-EOT
                 terraform {
-                  cloud {
-                    organization = "demo-octopus-app"
-                  	
-                    workspaces {
-                      name = "wrg-random-quotes"
-                    }
-                  }
-                
                   required_providers {
                     azurerm = {
                       source = "hashicorp/azurerm"
