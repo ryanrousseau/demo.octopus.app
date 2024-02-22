@@ -151,7 +151,7 @@ step "create-infrastructure" {
             Octopus.Action.Terraform.TemplateParameters = "{\"resourcegroupname\":\"#{RandomQuotes.Azure.ResourceGroup.Name}\",\"webappname\":\"wrg-#{RandomQuotes.Azure.WebApp.Name}\",\"databaseserver\":\"#{RandomQuotes.Azure.Database.ServerName}\",\"databasename\":\"wrg-#{RandomQuotes.Azure.Database.Name}\",\"environment\":\"#{RandomQuotes.Environment}\",\"location\":\"#{RandomQuotes.Tenant.Azure.Location}\",\"region\":\"#{RandomQuotes.Tenant.Azure.Region}\",\"owner\":\"#{Tenant.Key}\",\"description\":\"#{RandomQuotes.Azure.WebApp.Description}\"}"
             OctopusUseBundledTooling = "False"
         }
-        worker_pool_variable = "RandomQuotes.WorkerPool"
+        worker_pool = "hosted-ubuntu"
 
         container {
             feed = "docker-hub"
