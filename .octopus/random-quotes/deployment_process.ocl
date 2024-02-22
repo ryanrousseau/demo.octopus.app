@@ -37,6 +37,8 @@ step "create-infrastructure" {
             Octopus.Action.Terraform.RunAutomaticFileSubstitution = "True"
             Octopus.Action.Terraform.Template = <<-EOT
                 terraform {
+                  cloud {}
+                
                   required_providers {
                     azurerm = {
                       source = "hashicorp/azurerm"
