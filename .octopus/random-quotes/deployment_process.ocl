@@ -28,6 +28,7 @@ step "create-infrastructure" {
         properties = {
             Octopus.Action.AzureAccount.Variable = "RandomQuotes.Azure.Account"
             Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Terraform.AdditionalInitParams = "-backend-config=\"token=#{TerraformCloud.Token}\""
             Octopus.Action.Terraform.AllowPluginDownloads = "True"
             Octopus.Action.Terraform.AzureAccount = "True"
             Octopus.Action.Terraform.GoogleCloudAccount = "False"
