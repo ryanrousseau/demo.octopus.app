@@ -39,10 +39,10 @@ step "create-infrastructure" {
                 terraform {
                   cloud {
                     organization = "demo-octopus-app"
-                  }
-                
-                  workspaces {
-                    name = "wrg-random-quotes"
+                  	
+                    workspaces {
+                      name = "wrg-random-quotes"
+                    }
                   }
                 }
                 
