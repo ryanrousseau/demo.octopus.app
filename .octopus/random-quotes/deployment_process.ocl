@@ -36,11 +36,12 @@ step "create-infrastructure" {
             Octopus.Action.Terraform.RunAutomaticFileSubstitution = "True"
             Octopus.Action.Terraform.Template = <<-EOT
                 terraform {
-                  backend "azurerm" {
-                    resource_group_name  = "demo.octopus.app"
-                    storage_account_name = "octodemotfstate"
-                    container_name       = "terraform-state"
-                    key                  = "random-quotes-#{RandomQuotes.Terraform.StateKey}.terraform.tfstate"
+                  cloud {
+                    organization = "demo-octopus-app"
+                  }
+                
+                  workspaces {
+                    name = "wrg-random-quotes"
                   }
                 }
                 
