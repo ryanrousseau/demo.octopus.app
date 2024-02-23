@@ -3,6 +3,7 @@ step "plan-to-apply-a-terraform-template" {
 
     action {
         action_type = "Octopus.TerraformPlan"
+        is_disabled = true
         properties = {
             Octopus.Action.AzureAccount.Variable = "RandomQuotes.Azure.Account"
             Octopus.Action.GoogleCloud.ImpersonateServiceAccount = "False"
@@ -150,6 +151,7 @@ step "approve-deployment" {
 
     action {
         action_type = "Octopus.Manual"
+        is_disabled = true
         is_required = true
         notes = "Require approval from someone with the appropriate permissions."
         properties = {
@@ -165,6 +167,7 @@ step "create-infrastructure" {
 
     action {
         action_type = "Octopus.TerraformApply"
+        is_disabled = true
         notes = "Use Terraform to create the Azure database and web app."
         properties = {
             Octopus.Action.AzureAccount.Variable = "RandomQuotes.Azure.Account"
