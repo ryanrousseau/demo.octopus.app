@@ -57,6 +57,20 @@ step "check-for-namespace" {
     }
 }
 
+step "calculate-replicas" {
+    name = "Calculate replicas"
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.Script.ScriptBody = "Set-OctopusVariable -name \"Replicas\" -value \"3\""
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+        }
+        worker_pool = "azure-worker-pool"
+    }
+}
+
 step "deploy-petclinic-helm-chart" {
     name = "Deploy PetClinic Helm Chart"
     properties = {
