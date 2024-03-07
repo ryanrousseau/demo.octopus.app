@@ -71,6 +71,20 @@ step "calculate-replicas" {
     }
 }
 
+step "python" {
+    name = "Python"
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.Script.ScriptBody = "print(\"Hello world\")"
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "Python"
+        }
+        worker_pool = "hosted-ubuntu"
+    }
+}
+
 step "deploy-petclinic-helm-chart" {
     name = "Deploy PetClinic Helm Chart"
     properties = {
@@ -98,7 +112,7 @@ step "deploy-petclinic-helm-chart" {
                       password: "#{PetClinic.MySQL.PetClinic.Password}"
                 webimage:
                   tag: "#{Octopus.Action.Package[petclinic-web].PackageVersion}"
-                      
+                replicas: "#{PetClinic.Config.Replicas}"
                 EOT
             Octopus.Action.Package.DownloadOnTentacle = "False"
             Octopus.Action.Package.FeedId = "octopus-server-built-in"
