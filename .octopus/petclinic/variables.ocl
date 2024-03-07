@@ -18,3 +18,7 @@ variable "PetClinic.CleanedSpaceName" {
 variable "PetClinic.Cluster.Namespace" {
     value "#{PetClinic.CleanedSpaceName}-#{PetClinic.CleanedEnvironmentName}" {}
 }
+
+variable "PetClinic.Config.Replicas" {
+    value "#{Octopus.Action[Calculate replicas].Output.Replicas}" {}
+}
