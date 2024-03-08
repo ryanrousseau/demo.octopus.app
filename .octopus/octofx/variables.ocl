@@ -115,3 +115,35 @@ variable "Octopus.ServiceNow.ChangeRequest.Number" {
         }
     }
 }
+
+variable "Project.AWS.Account" {
+    value {}
+}
+
+variable "Project.IIS.Roles" {
+    value "octofx-web,octopetshop-cartservice,octopetshop-productservice,octopetshop-web" {}
+}
+
+variable "Project.App.Roles" {
+    value "octofx-service" {}
+}
+
+variable "Project.AWS.S3.Bucket" {
+    value "demo.octopus.app-dr" {}
+}
+
+variable "Project.AWS.Region.Code" {
+    value "us-east-2" {}
+}
+
+variable "Project.AWS.S3.IIS.Key" {
+    value "#{Octopus.Environment.Name}/iis/iis-vms.json" {}
+}
+
+variable "Project.Azure.VM.Size" {
+    value "Standard_B2s" {}
+}
+
+variable "Project.Azure.Windows.VM.Sku" {
+    value "2022-datacenter-azure-edition" {}
+}
