@@ -16,6 +16,11 @@ variable "OctoFX.Database.Name" {
     value "octofx-production" {
         environment = ["production"]
     }
+
+    value "octofx-dr" {
+        description = ""
+        environment = ["disaster-recovery"]
+    }
 }
 
 variable "OctoFX.Database.Role" {
