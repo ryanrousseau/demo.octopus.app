@@ -47,7 +47,6 @@ step "create-web-app-service" {
         action_type = "Octopus.KubernetesDeployRawYaml"
         notes = "Create a Load Balancer service for the web app on the target cluster."
         properties = {
-            Octopus.Action.GitRepository.Source = "External"
             Octopus.Action.Kubernetes.ResourceStatusCheck = "True"
             Octopus.Action.Kubernetes.WaitForJobs = "False"
             Octopus.Action.KubernetesContainers.CustomResourceYaml = <<-EOT
@@ -75,7 +74,7 @@ step "create-web-app-service" {
             Octopus.Action.KubernetesContainers.CustomResourceYamlFileName = "deployment.yaml"
             Octopus.Action.KubernetesContainers.DeploymentWait = "NoWait"
             Octopus.Action.KubernetesContainers.Namespace = "#{OctoPetShop.Cluster.Namespace}"
-            Octopus.Action.Script.ScriptSource = "GitRepository"
+            Octopus.Action.Script.ScriptSource = "Inline"
             OctopusUseBundledTooling = "False"
         }
         worker_pool = "hosted-ubuntu"
@@ -83,14 +82,6 @@ step "create-web-app-service" {
         container {
             feed = "docker-hub"
             image = "octopusdeploy/worker-tools:5.1.0-ubuntu.22.04"
-        }
-
-        git_dependencies {
-            default_branch = "main"
-            file_path_filters = ["deployment.yaml"]
-            git_credential_id = "GitCredentials-122"
-            git_credential_type = "Library"
-            repository_uri = "https://github.com/ryanrousseau/octopub-frontend.git"
         }
     }
 }
