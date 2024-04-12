@@ -64,3 +64,43 @@ step "send-completion-notification" {
         }
     }
 }
+
+step "run-a-script" {
+    name = "Run a Script"
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.GitRepository.Source = "External"
+            Octopus.Action.Script.ScriptFileName = "script.ps1"
+            Octopus.Action.Script.ScriptSource = "GitRepository"
+        }
+        worker_pool = "hosted-ubuntu"
+
+        git_dependencies {
+            default_branch = "main"
+            git_credential_type = "Anonymous"
+            repository_uri = "https://github.com/OctopusDeploy/OctopusClients.git"
+        }
+    }
+}
+
+step "run-a-script-2" {
+    name = "Run a Script 2"
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.GitRepository.Source = "External"
+            Octopus.Action.Script.ScriptFileName = "script2.ps1"
+            Octopus.Action.Script.ScriptSource = "GitRepository"
+        }
+        worker_pool = "hosted-ubuntu"
+
+        git_dependencies {
+            default_branch = "main"
+            git_credential_type = "Anonymous"
+            repository_uri = "https://github.com/OctopusDeploy/OctopusClients.git"
+        }
+    }
+}
