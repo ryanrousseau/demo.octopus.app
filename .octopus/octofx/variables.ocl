@@ -79,3 +79,9 @@ variable "OctoFX.TradingSite.Url" {
         description = ""
     }
 }
+
+variable "Cert" {
+    type = "Certificate"
+
+    value "Certificates-102" {}
+}
