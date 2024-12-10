@@ -228,3 +228,31 @@ step "send-completion-notification" {
         }
     }
 }
+
+step "run-a-script" {
+    name = "Run a Script"
+    properties = {
+        Octopus.Action.TargetRoles = "demo-not-exist"
+    }
+
+    action "run-a-script" {
+        action_type = "Octopus.Script"
+        name = "Run a Script"
+        properties = {
+            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.Script.ScriptBody = "write-host \"temp\""
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+        }
+        worker_pool_variable = ""
+    }
+
+    action "manual-intervention-required" {
+        action_type = "Octopus.Manual"
+        name = "Manual Intervention Required"
+        properties = {
+            Octopus.Action.Manual.BlockConcurrentDeployments = "False"
+            Octopus.Action.Manual.Instructions = "Instructions"
+        }
+    }
+}
