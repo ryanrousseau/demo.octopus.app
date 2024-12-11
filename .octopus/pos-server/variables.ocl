@@ -41,3 +41,22 @@ variable "Octopus.Task.ConcurrencyTag" {
         tenant_tag = ["Event Platform Hosting/Hosting Group 3"]
     }
 }
+
+variable "Project.ProgressiveRollout.Version" {
+    value {
+        process = ["runbook/progressive-rollout"]
+
+        prompt {
+            description = ""
+            display_settings = {
+                Octopus.ControlType = "SingleLineText"
+            }
+            label = "Release Version to Deploy"
+            required = true
+        }
+    }
+}
+
+variable "Project.Octopus.ApiKey" {
+    value "#{Global.Octopus.ApiKey}" {}
+}
