@@ -1,3 +1,16 @@
+step "approval" {
+    name = "Approval"
+
+    action {
+        action_type = "Octopus.Manual"
+        properties = {
+            Octopus.Action.Manual.BlockConcurrentDeployments = "False"
+            Octopus.Action.Manual.Instructions = "Instructions"
+        }
+        tenant_tags = ["Feature Set/Production Approval"]
+    }
+}
+
 step "back-up-store-server-database" {
     name = "Back up store server database"
     properties = {
