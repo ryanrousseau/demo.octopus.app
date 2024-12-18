@@ -42,6 +42,7 @@ step "deploy-rate-service" {
                 
                 Write-Highlight "InstallationDirectoryPath $d"
                 EOT
+            Octopus.Action.CustomScripts.PreDeploy.ps1 = "Fail-step \"whoops\""
             Octopus.Action.EnabledFeatures = "Octopus.Features.WindowsService,Octopus.Features.CustomScripts,Octopus.Features.ConfigurationVariables,Octopus.Features.ConfigurationTransforms"
             Octopus.Action.Package.AutomaticallyRunConfigurationTransformationFiles = "True"
             Octopus.Action.Package.AutomaticallyUpdateAppSettingsAndConnectionStrings = "True"
@@ -226,5 +227,42 @@ step "send-completion-notification" {
             Octopus.Action.Email.To = "#{Octopus.Deployment.CreatedBy.EmailAddress}"
             Octopus.Action.RunOnServer = "false"
         }
+    }
+}
+
+step "auto-rollback" {
+    condition = "Failure"
+    name = "Auto-rollback"
+
+    action {
+        action_type = "Octopus.Script"
+        is_required = true
+        properties = {
+            Octopus.Action.Script.ScriptBody = <<-EOT
+                $server = $OctopusParameters["Octopus.Web.ServerUri"]
+                $apiKey = $OctopusParameters["Project.Octopus.ApiKey"]
+                $space = $OctopusParameters["Octopus.Space.Name"]
+                $project = $OctopusParameters["Octopus.Project.Name"]
+                $environment = $OctopusParameters["Octopus.Environment.Name"]
+                $currentVersion = $OctopusParameters["Octopus.Release.Number"]
+                $previousVersion = $OctopusParameters["Octopus.Release.PreviousForEnvironment.Number"]
+                
+                if ($currentVersion -ne $previousVersion) {
+                  Write-Highlight "Rolling back to version $previousVersion"
+                
+                  octopus login --server $server --api-key $apiKey --no-prompt
+                
+                  octopus release deploy --space $space --project $project --version $previousVersion --environment $environment --output-format 'basic' --no-prompt
+                } else {
+                  Write-Highlight "Already at latest successful version"
+                }
+                
+                
+                
+                EOT
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+        }
+        worker_pool = "hosted-ubuntu"
     }
 }
