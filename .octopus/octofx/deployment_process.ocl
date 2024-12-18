@@ -240,7 +240,7 @@ step "auto-rollback" {
         properties = {
             Octopus.Action.Script.ScriptBody = <<-EOT
                 $server = $OctopusParameters["Octopus.Web.ServerUri"]
-                $apiKey = $OctopusParameters["Project.Octopus.ApiKey"]
+                $apiKey = $OctopusParameters["Global.Octopus.ApiKey"]
                 $space = $OctopusParameters["Octopus.Space.Name"]
                 $project = $OctopusParameters["Octopus.Project.Name"]
                 $environment = $OctopusParameters["Octopus.Environment.Name"]
@@ -250,7 +250,7 @@ step "auto-rollback" {
                 if ($currentVersion -ne $previousVersion) {
                   Write-Highlight "Rolling back to version $previousVersion"
                 
-                  octopus login --server $server --apiKey $apiKey --no-prompt
+                  octopus login --server $server --api-key $apiKey --no-prompt
                 
                   octopus release deploy --space $space --project $project --version $previousVersion --environment $environment --output-format 'basic' --no-prompt
                 } else {
