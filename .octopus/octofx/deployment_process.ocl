@@ -42,7 +42,6 @@ step "deploy-rate-service" {
                 
                 Write-Highlight "InstallationDirectoryPath $d"
                 EOT
-            Octopus.Action.CustomScripts.PreDeploy.ps1 = "Fail-step \"whoops\""
             Octopus.Action.EnabledFeatures = "Octopus.Features.WindowsService,Octopus.Features.CustomScripts,Octopus.Features.ConfigurationVariables,Octopus.Features.ConfigurationTransforms"
             Octopus.Action.Package.AutomaticallyRunConfigurationTransformationFiles = "True"
             Octopus.Action.Package.AutomaticallyUpdateAppSettingsAndConnectionStrings = "True"
