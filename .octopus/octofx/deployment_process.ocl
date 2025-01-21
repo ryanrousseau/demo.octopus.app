@@ -8,6 +8,7 @@ step "approve-production-release" {
     action {
         action_type = "Octopus.Manual"
         environments = ["production"]
+        is_disabled = true
         is_required = true
         notes = "Require approval from someone with the appropriate permissions."
         properties = {
@@ -16,7 +17,6 @@ step "approve-production-release" {
             Octopus.Action.Manual.ResponsibleTeamIds = "global/demo-presenters"
             Octopus.Action.RunOnServer = "false"
         }
-        worker_pool_variable = ""
     }
 }
 
@@ -226,6 +226,5 @@ step "send-completion-notification" {
             Octopus.Action.Email.To = "#{Octopus.Deployment.CreatedBy.EmailAddress}"
             Octopus.Action.RunOnServer = "false"
         }
-        worker_pool_variable = ""
     }
 }
