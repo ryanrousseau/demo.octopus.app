@@ -156,6 +156,7 @@ step "deploy-trading-site" {
 
     action "deploy-to-iis" {
         action_type = "Octopus.IIS"
+        is_disabled = true
         name = "Deploy to IIS"
         properties = {
             Octopus.Action.EnabledFeatures = ",Octopus.Features.IISWebSite,Octopus.Features.ConfigurationTransforms,Octopus.Features.ConfigurationVariables"
