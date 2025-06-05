@@ -67,30 +67,6 @@ variable "OctoFX.TradingSite.Url" {
     }
 }
 
-variable "OctopusPrintEvaluatedVariables" {
-    value "False" {
-        prompt {
-            description = ""
-            display_settings = {
-                Octopus.ControlType = "Checkbox"
-            }
-            label = "Print Evaluated Variables"
-        }
-    }
-}
-
-variable "OctopusPrintVariables" {
-    value "False" {
-        prompt {
-            description = ""
-            display_settings = {
-                Octopus.ControlType = "Checkbox"
-            }
-            label = "Print Variables"
-        }
-    }
-}
-
 variable "Project.TradingSite.Certificate" {
     type = "Certificate"
 
