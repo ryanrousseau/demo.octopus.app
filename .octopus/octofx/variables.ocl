@@ -128,7 +128,5 @@ variable "Project.AWS.Account" {
 variable "OctoFX.Azure.Account" {
     type = "AzureAccount"
 
-    value "octofx-azure-subscription" {
-        process = ["runbook/restart-web-site"]
-    }
+    value "octofx-azure-subscription" {}
 }
