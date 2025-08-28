@@ -130,3 +130,9 @@ variable "OctoFX.Azure.Account" {
 
     value "octofx-azure-subscription" {}
 }
+
+variable "OctoFX.Database.Account" {
+    type = "UsernamePasswordAccount"
+
+    value "database-production-password" {}
+}
