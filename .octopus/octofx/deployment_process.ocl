@@ -1,9 +1,69 @@
+step "transfer-service-package" {
+    name = "Transfer Service package"
+    properties = {
+        Octopus.Action.TargetRoles = "octofx-service"
+    }
+
+    action {
+        action_type = "Octopus.TransferPackage"
+        environments = ["transfer"]
+        properties = {
+            Octopus.Action.AutoRetry.MaximumCount = "3"
+            Octopus.Action.AutoRetry.MinimumBackoff = "15"
+            Octopus.Action.Package.DownloadOnTentacle = "False"
+            Octopus.Action.Package.FeedId = "azure-devops-artifacts"
+            Octopus.Action.Package.PackageId = "OctoFX.RateService"
+            Octopus.Action.Package.TransferPath = "c:\\temp"
+        }
+        worker_pool_variable = ""
+
+        packages {
+            acquisition_location = "Server"
+            feed = "azure-devops-artifacts"
+            package_id = "OctoFX.RateService"
+            properties = {
+                SelectionMode = "immediate"
+            }
+        }
+    }
+}
+
+step "transfer-website-package" {
+    name = "Transfer Website package"
+    properties = {
+        Octopus.Action.TargetRoles = "octofx-web"
+    }
+
+    action {
+        action_type = "Octopus.TransferPackage"
+        environments = ["transfer"]
+        properties = {
+            Octopus.Action.AutoRetry.MaximumCount = "3"
+            Octopus.Action.AutoRetry.MinimumBackoff = "15"
+            Octopus.Action.Package.DownloadOnTentacle = "False"
+            Octopus.Action.Package.FeedId = "azure-devops-artifacts"
+            Octopus.Action.Package.PackageId = "OctoFX.TradingWebsite"
+            Octopus.Action.Package.TransferPath = "c:\\temp"
+        }
+        worker_pool_variable = ""
+
+        packages {
+            acquisition_location = "Server"
+            feed = "azure-devops-artifacts"
+            package_id = "OctoFX.TradingWebsite"
+            properties = {
+                SelectionMode = "immediate"
+            }
+        }
+    }
+}
+
 step "deploy-database-changes" {
     name = "Deploy Database Changes"
 
     action {
         action_type = "Octopus.Script"
-        excluded_environments = ["disaster-recovery"]
+        excluded_environments = ["disaster-recovery", "transfer"]
         notes = "Deploy database changes using a [Worker](https://octopus.com/docs/infrastructure/workers) and [DbUp](https://dbup.readthedocs.io/en/latest/)."
         properties = {
             Octopus.Action.EnabledFeatures = "Octopus.Features.ConfigurationVariables"
@@ -35,6 +95,7 @@ step "deploy-rate-service" {
 
     action {
         action_type = "Octopus.WindowsService"
+        excluded_environments = ["transfer"]
         notes = "Deploy a Windows Service to a VM in Azure."
         properties = {
             Octopus.Action.CustomScripts.PostDeploy.ps1 = <<-EOT
@@ -116,6 +177,7 @@ step "deploy-trading-site" {
 
     action "deploy-trading-site" {
         action_type = "Octopus.IIS"
+        excluded_environments = ["transfer"]
         name = "Deploy Trading Site"
         notes = "Deploy the Trading Site to IIS on a VM in Azure."
         properties = {
@@ -156,6 +218,7 @@ step "deploy-trading-site" {
 
     action "smoke-test-trading-site" {
         action_type = "Octopus.Script"
+        excluded_environments = ["transfer"]
         name = "Smoke Test Trading Site"
         notes = "Make a request to the site to verify that it is running correctly."
         properties = {
@@ -235,6 +298,7 @@ step "auto-rollback" {
 
     action {
         action_type = "Octopus.Script"
+        excluded_environments = ["transfer"]
         is_required = true
         properties = {
             Octopus.Action.Script.ScriptBody = <<-EOT
