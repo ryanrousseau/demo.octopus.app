@@ -82,6 +82,7 @@ step "deploy-trading-site" {
     action "remove-from-azure-load-balancer" {
         action_type = "Octopus.AzurePowerShell"
         environments = ["production"]
+        is_disabled = true
         name = "Remove from Azure Load Balancer"
         notes = "Use the Azure CLI to remove the VM from the load balancer."
         properties = {
@@ -177,6 +178,7 @@ step "deploy-trading-site" {
     action "add-to-azure-load-balancer" {
         action_type = "Octopus.AzurePowerShell"
         environments = ["production"]
+        is_disabled = true
         name = "Add to Azure Load Balancer"
         notes = "Use the Azure CLI to add the VM to the load balancer."
         properties = {
